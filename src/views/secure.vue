@@ -3,7 +3,7 @@
   <div id="app">
      <Header />
      <AddRezervare />
-      <!-- <Rezervari v-bind:rezervari="rezervari" v-on:del-rezervare="deleteRezervare"/>-->
+       <!--<Rezervari v-bind:rezervari="rezervari" v-on:del-rezervare="deleteRezervare"/> -->
       <Rezervari />
   </div>
 </div>
@@ -41,27 +41,13 @@ export default {
       rezervari:[
         {
           id:1,
-          date: 25.04,
-          time: {14:16},
+          data: 25.04,
+          ora: {14:16},
           sport: "footbal",
           rezervat: false,
           name: "Joni"
-        },
-         {
-          id:2,
-          date: 25.04,
-          time: {16:18},
-          sport: "footbal",
-          rezervat: false,
-          name:"Messi"
-        },
-         {
-          id:3,
-          dataOra: 25,
-          sport: "tennis",
-          rezervat: false,
-          name:"Panseluta"
         }
+         
       ]
 
     }

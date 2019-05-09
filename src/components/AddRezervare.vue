@@ -1,7 +1,7 @@
 <template>
     <div>
         <form @submit="addRezervare">
-            <input type="text" v-model="name" name="name" placeholder="Nume">
+            <input type="text" v-model="name" name="name" value="name" placeholder="Nume">
             <ul>
             <br>
             Alege sportul: 
@@ -12,26 +12,26 @@
             </ul>
             <br>
             Alege data si ora:
-            <dateAndTime>
-            <input type="date" v-model="dataOra" name="dataOra">
-            <select>
-                    <option value="timeSlot1">8-10</option>
-                    <option value="timeSlot2">10-12</option>
-                    <option value="timeSlot3">12-14</option>
-                    <option value="timeSlot4">14-16</option>
-                    <option value="timeSlot5">16-18</option>
-                    <option value="timeSlot6">18-20</option>
-                    <option value="timeSlot7">20-22</option>
+            
+            <input type="date" v-model="data" name="data" value="data">
+            <select v-model="ora" name="ora" value="ora">
+                    <option value="8-10">8-10</option>
+                    <option value="10-12">10-12</option>
+                    <option value="12-14">12-14</option>
+                    <option value="14-16">14-16</option>
+                    <option value="16-18">16-18</option>
+                    <option value="18-20">18-20</option>
+                    <option value="20-22">20-22</option>
                     
             </select>
-            </dateAndTime>
-            <input type="submit" value="Submit" class="btn">
+    
+            <button v-on:click.prevent="post"> Rezerva </button>
+            <!-- <input type="submit" value="Submit" class="btn" > -->
         </form>
     </div>
 </template>
 
 <script>
-
 import uuid from 'uuid'
 export default {
     name: "AddRezervare",
@@ -39,21 +39,34 @@ export default {
         return {
             name:'',
             sport:'',
-            dataOra:''
-
+            data:'',
+            ora:''
         }
     },
 
     methods: {
         addRezervare(){
+            
             const newRezervare ={
                 id: uuid.v4(),
                 name: this.name,
                 sport:this.sport,
-                dataOra:this.dataOra
+                data:this.data,
+                ora:this.ora
 
             }
             //mai am de lucru
+        
+        },
+        post: function(){
+            this.$http.post('https://jsonplaceholder.typicode.com/posts',{
+                title:this.name,
+                body:[this.sport,this.data,this.ora],
+                userId:1
+            }).then(function(data){
+                console.log(data);
+            })
+
         }
     }
 }
