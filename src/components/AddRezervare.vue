@@ -11,9 +11,10 @@
             <input type="radio" v-model="sport" name="sport" value="tennis"> Tennis <br>
             </ul>
             <br>
-            Alege data si ora:
+            Alege data:
             
             <input type="date" v-model="data" name="data" value="data">
+            Alege ora:
             <select v-model="ora" name="ora" value="ora">
                     <option value="8-10">8-10</option>
                     <option value="10-12">10-12</option>
@@ -26,13 +27,16 @@
             </select>
     
             <button v-on:click.prevent="post"> Rezerva </button>
-            <!-- <input type="submit" value="Submit" class="btn" > -->
+            
+           
         </form>
     </div>
 </template>
 
 <script>
 import uuid from 'uuid'
+import axios from 'axios';
+
 export default {
     name: "AddRezervare",
     data(){
@@ -59,10 +63,10 @@ export default {
         
         },
         post: function(){
-            this.$http.post('https://jsonplaceholder.typicode.com/posts',{
-                title:this.name,
-                body:[this.sport,this.data,this.ora],
-                userId:1
+            this.$http.post('http://localhost:1337/rezervari.build/api/rezervare',{
+                date:this.data,
+                time_slot:this.ora,
+                sport:this.sport
             }).then(function(data){
                 console.log(data);
             })
@@ -73,14 +77,23 @@ export default {
 </script>
 
 <style scoped>
-form{
+form{/*
     display: flex;
     flex-direction: column;
     margin-left:300px;
     margin-right: 300px;
     margin-top: 20px;
     padding:15px;
-    background-color:gainsboro;
+    background-color:gainsboro;*/
+    width: 500px;
+    height: 400px;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 35px 35px #010f48;
+    margin: auto;
+    margin-top: 75px;
+    padding: 20px;
 }
 
 dateAndTime{
