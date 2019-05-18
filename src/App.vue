@@ -17,7 +17,7 @@
                 authenticated: false,
                 mockAccount: {
                     username: "admin",
-                    password: "admin"
+                    parola: "admin"
                 }
             }
         },

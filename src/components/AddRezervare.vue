@@ -2,6 +2,7 @@
     <div>
         <form @submit="addRezervare">
             <input type="text" v-model="name" name="name" value="name" placeholder="Nume">
+          
             <ul>
             <br>
             Alege sportul: 
@@ -36,15 +37,21 @@
 <script>
 import uuid from 'uuid'
 import axios from 'axios';
+import router from '../router'
 
 export default {
+    
+
     name: "AddRezervare",
+    props:['user1','pass1'],
     data(){
         return {
             name:'',
             sport:'',
             data:'',
-            ora:''
+            ora:'',
+            username:'',
+            parola:''
         }
     },
 
@@ -56,19 +63,27 @@ export default {
                 name: this.name,
                 sport:this.sport,
                 data:this.data,
-                ora:this.ora
+                ora:this.ora,
+                username:this.user1,
+                parola:this.pass1
 
             }
-            //mai am de lucru
         
         },
+        /*'http://localhost:1337/rezervari.build/api/rezervare'*/ 
         post: function(){
-            this.$http.post('http://localhost:1337/rezervari.build/api/rezervare',{
+            this.$http.post('http://rezervari.build/api/rezervare',{
                 date:this.data,
                 time_slot:this.ora,
-                sport:this.sport
+                sport:this.sport,
+               // username:this.username,
+               // parola:this.parola
             }).then(function(data){
+                alert("Rezervarea a fost efectuata cu succes! :) ");
+                /*
                 console.log(data);
+                console.log(this.user1),
+                console.log(this.pass1)*/
             })
 
         }

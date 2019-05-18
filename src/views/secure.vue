@@ -2,8 +2,9 @@
 <div class="bg">
   <div id="app">
      <Header />
-     <AddRezervare />
-       <!--<Rezervari v-bind:rezervari="rezervari" v-on:del-rezervare="deleteRezervare"/> -->
+    <!-- <AddRezervare/> -->
+       <AddRezervare :user1="user" v-bind:pass1="pass"></AddRezervare> 
+    
       <Rezervari />
   </div>
 </div>
@@ -13,21 +14,13 @@
   curl ->
  -->
 
-<script>
-export default {
-
-}
-</script>
-
-<style>
-
-</style>
-
 
 <script>
 import Header from '../components/layout/Header.vue';
 import Rezervari from '../components/Rezervari.vue';
 import AddRezervare from '../components/AddRezervare.vue';
+import router from '../router'
+
 export default {
   name: 'app',
   components: {
@@ -35,27 +28,30 @@ export default {
     Header,
     AddRezervare
   },
+  props:["user","pass"],
+
 
   data(){
     return {
+      user1:'',
+      pass1:'',
+      /*
       rezervari:[
         {
-          id:1,
+         /* id:1,
           data: 25.04,
           ora: {14:16},
           sport: "footbal",
           rezervat: false,
           name: "Joni"
-        }
-         
-      ]
-
+        }    
+      ]*/
     }
   },
 
   methods:{
     deleteRezervare(id){
-      this.rezervari=this.rezervari.filter(rezervare => rezervare.id != id)
+      console.log($route.params.user)
     }
   }
 }

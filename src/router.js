@@ -10,18 +10,21 @@ export default new Router({
         {
             path: '/',
             redirect: {
-                name: "login"
+                name: "login",
+                props:true
             }
         },
         {
             path: "/login",
             name: "login",
-            component: LoginComponent
+            component: LoginComponent,
+            props:true
         },
         {
             path: "/secure",
             name: "secure",
-            component: SecureComponent
+            component: SecureComponent,
+            props:true
         }
     ]
 })
