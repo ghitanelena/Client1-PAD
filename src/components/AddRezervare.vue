@@ -76,14 +76,18 @@ export default {
                 date:this.data,
                 time_slot:this.ora,
                 sport:this.sport,
-               // username:this.username,
-               // parola:this.parola
+                utilizator:this.user1,
+                parola:this.pass1
             }).then(function(data){
-                alert("Rezervarea a fost efectuata cu succes! :) ");
-                /*
+                if (data.body == 'Username or password incorrect!')
+                    alert("Rezervarea a ESUAT! :) ")
+                else
+                    alert("Rezervarea a fost efectuata cu succes! :) ");
+                
                 console.log(data);
+                console.log(data.body);
                 console.log(this.user1),
-                console.log(this.pass1)*/
+                console.log(this.pass1)
             })
 
         }
